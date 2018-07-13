@@ -1,35 +1,44 @@
-const path = require('path');
+const _ = require("lodash")
+const Promise = require("bluebird")
+const path = require("path")
+const select = require(`unist-util-select`)
+const fs = require(`fs-extra`)
 
-exports.createPages = ({boundActionCreators, graphql}) =>{
-  const {createPage} = boundActionCreators;
-  const postTemplate = path.resolve('src/templates/blog-post.js');
-  return graphql(
-    `{
-        allMarkdownRemark{
-          edges{
-            node{
-              html
-              id
-              frontmatter{
+exports.createPages = ({ graphql, boundActionCreators }) => {
+  const { createPage } = boundActionCreators
+
+  return new Promise((resolve, reject) => {
+    const pages = []
+    const blogPost = path.resolve("./src/templates/blog-post.js")
+    resolve(
+      graphql(
+        `
+      {
+        allMarkdownRemark(limit: 1000) {
+          edges {
+            node {
+              frontmatter {
                 path
-                title
-                author
               }
             }
           }
         }
       }
     `
-  ).then(res=>{
-    if(res.errors){
-      return Promise.reject(res.errors);
-    }
+      ).then(result => {
+        if (result.errors) {
+          console.log(result.errors)
+          reject(result.errors)
+        }
 
-    res.data.allMarkdownRemark.edges.forEach(({node})=>{
-      createPage({
-        path: node.frontmatter.path,
-        component: postTemplate
+        // Create blog posts pages.
+        _.each(result.data.allMarkdownRemark.edges, edge => {
+          createPage({
+            path: edge.node.frontmatter.path,
+            component: blogPost
+          })
+        })
       })
-    })
+    )
   })
 }
