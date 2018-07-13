@@ -1,8 +1,8 @@
 {
-  "name": "Drop Corporation Blog",
-  "description": "Drop Your Shield",
+  "name": "Drop-Corporation-Blog",
+  "description": "Drop-Your-Shield",
   "version": "1.0.0",
-  "author": "Patryk Ties",
+  "author": "Patryk-Ties",
   "dependencies": {
     "gatsby": "^1.9.235",
     "gatsby-link": "^1.6.39",
@@ -18,7 +18,7 @@
     "gatsby-transformer-sharp": "^1.6.22",
     "lodash": "^4.17.4"
   },
-  "homepage": "https:www.drop-your-shield.com",
+  "homepage": "https://www.drop-your-shield.com",
   "keywords": [
     "gatsby"
   ],
