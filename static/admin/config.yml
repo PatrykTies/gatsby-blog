@@ -8,8 +8,37 @@ public_folder: "uploads"
 collections:
     - name: "coding"
       label: "Coding label"
-      folder: "src/posts"
+      folder: "src/posts/coding"
       create: true
       slug: "{{year}}--{{slug}}"
       fields:
         - {label: "Title", name: "title", widget: "string", required: true}
+        - {label: "Publish Date", name: "date", widget: "date"}
+        - {label: "Draft", name: "draft", widget: "boolean", default: true}
+        - {label: "Categories", name: "categories", widget: "hidden", default: "Podcast"}
+        - {label: "Tags", name: "tags", widget: "list", required: false}
+        - {label: Author, name: author, widget: hidden, default: Chris Stayte}
+        - {label: Author Image, name: authorImage, widget: hidden, default: "uploads/admirals.jpg"}
+        - {label: "Header Image", name: image, widget: image, required: false}
+        - {label: Commenting, name: comments, widget: boolean, default: true}
+        - {label: Sharing, name: share, widget: boolean, default: true}
+        - {label: Type, name: type, widget: hidden, default: "post"}
+        - {label: "Body", name: "body", widget: "markdown"}
+    - name: "life"
+      label: "Life Post"
+      folder: "src/posts/life"
+      create: true
+      slug: "{{year}}-{{slug}}"
+      fields:
+        - {label: "Title", name: "title", widget: "string"}
+        - {label: "Publish Date", name: "date", widget: "date"}
+        - {label: "Draft", name: "draft", widget: "boolean", default: true}
+        - {label: "Categories", name: "categories", widget: "string", required: true}
+        - {label: "Tags", name: "tags", widget: "list", required: false}
+        - {label: Author, name: author, widget: hidden, default: Chris Stayte}
+        - {label: Author Image, name: authorImage, widget: hidden, default: "uploads/admirals.jpg"}
+        - {label: "Header Image", name: image, widget: image, required: false}
+        - {label: Commenting, name: comments, widget: boolean, default: true}
+        - {label: Sharing, name: share, widget: boolean, default: true}
+        - {label: Type, name: type, widget: hidden, default: "post"}
+        - {label: "Body", name: "body", widget: "markdown"}
