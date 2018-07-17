@@ -114,11 +114,13 @@ class Template extends React.Component {
         <Helmet>
             <title>{siteTitle}</title>
             <meta name="description" content={siteDescription} />
+            <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
         </Helmet>
 
         {content}
 
         <div id="bg"></div>
+      
       </div>
     )
   }
