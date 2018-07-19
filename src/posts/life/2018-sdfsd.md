@@ -7,6 +7,7 @@ tags:
   - dupa2
 author: Chris Stayte
 authorImage: uploads/admirals.jpg
+image: /uploads/admirals.jpg
 comments: true
 share: true
 type: post
