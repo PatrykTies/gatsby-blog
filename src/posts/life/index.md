@@ -1,5 +1,6 @@
 ---
 title: sdfsd
+path: '/life'
 date: '2018-07-17'
 draft: true
 categories: dupa
