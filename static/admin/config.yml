@@ -10,7 +10,7 @@ collections:
       label: "Coding label"
       folder: "src/posts/coding"
       create: true
-      slug: "{{slug}}"
+      path: '/coding'
       fields:
         - {label: "Title", name: "title", widget: "string", required: true}
         - {label: "Publish Date", name: "date", widget: "date"}
@@ -28,7 +28,7 @@ collections:
       label: "Life Post"
       folder: "src/posts/life"
       create: true
-      slug: 'index'
+      path: '/life'
       fields:
         - {label: "Title", name: "title", widget: "string"}
         - {label: "Publish Date", name: "date", widget: "date"}
