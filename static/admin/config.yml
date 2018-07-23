@@ -13,6 +13,8 @@ collections:
       path: '/coding'
       fields:
         - {label: "Title", name: "title", widget: "string", required: true}
+        - {label: "PostCardImage", name: "postCardImage", widget: image, required: false}
+        - {label: "PostCardImageUrl", name: "postCardImageUrl", widget: 'string', required: false}
         - {label: "Publish Date", name: "date", widget: "date"}
         - {label: "Draft", name: "draft", widget: "boolean", default: true}
         - {label: "Categories", name: "categories", widget: "hidden", default: "Podcast"}
@@ -32,6 +34,8 @@ collections:
       fields:
         - {label: "Title", name: "title", widget: "string"}
         - {label: "Publish Date", name: "date", widget: "date"}
+        - {label: "PostCardImage", name: "postCardImage", widget: image, required: false}
+        - {label: "PostCardImageUrl", name: "postCardImageUrl", widget: 'string', required: false}
         - {label: "Draft", name: "draft", widget: "boolean", default: true}
         - {label: "Categories", name: "categories", widget: "string", required: true}
         - {label: "Tags", name: "tags", widget: "list", required: false}
