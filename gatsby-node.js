@@ -19,7 +19,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             node {
               frontmatter {
                 path
-
+                contentType
               }
             }
           }
@@ -29,8 +29,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       ).then(result => {
         if (result.errors) {
 
-          console.log(result.errors)
+          console.log('NOOOOOOO POOOOOSTS')
           reject(result.errors)
+
         }
 
         // Create blog posts pages.

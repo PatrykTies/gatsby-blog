@@ -12,6 +12,8 @@ authorImage: uploads/admirals.jpg
 comments: true
 share: true
 type: post
+path: '/coding'
+contentType: 'coding'
 ---
 Server 188 is strong but we are stronger
 

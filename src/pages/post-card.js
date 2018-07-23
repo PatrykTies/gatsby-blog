@@ -39,7 +39,7 @@ class PostCard extends React.Component {
     //     ? this.props.data.allAuthorsJson.edges
     //     : [];
 
-    const {title,author,date,image,path} = this.props.postdata ? this.props.postdata.node.frontmatter : {}
+    const {title,author,date,postCardImage,path} = this.props.postdata ? this.props.postdata.node.frontmatter : {}
 
     return (
       <div>
@@ -60,7 +60,7 @@ class PostCard extends React.Component {
           />
           <CardMedia
 
-            image={image}
+            image={postCardImage}
             title="Contemplative Reptile"
             style={{height: '0px',backgroundSize: 'cover',
             paddingTop: '56.25%', // 16:9,

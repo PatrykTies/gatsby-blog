@@ -8,12 +8,13 @@ public_folder: "uploads"
 collections:
     - name: "coding"
       label: "Coding label"
-      folder: "src/posts/{{slug}}"
+      folder: "src/posts/coding"
       create: true
-      path: '/{{slug}}'
-      slug: {{slug}}/index.md
+      slug: '{{slug}}/index.md'
       fields:
         - {label: "Title", name: "title", widget: "string", required: true}
+        - {label: "Content Type", name: "contentType", widget: "hidden", default: "coding"}
+        - {label: "Path", name: "path", widget: "hidden", default: "/coding"}
         - {label: "PostCardImage", name: "postCardImage", widget: image, required: false}
         - {label: "PostCardImageUrl", name: "postCardImageUrl", widget: 'string', required: false}
         - {label: "Publish Date", name: "date", widget: "date"}
@@ -31,10 +32,11 @@ collections:
       label: "Life Post"
       folder: "src/posts/life"
       create: true
-      path: '/life'
       fields:
         - {label: "Title", name: "title", widget: "string"}
         - {label: "Publish Date", name: "date", widget: "date"}
+        - {label: "Content Type", name: "contentType", widget: "hidden", default: "life"}
+        - {label: "Path", name: "path", widget: "hidden", default: "/life"}
         - {label: "PostCardImage", name: "postCardImage", widget: image, required: false}
         - {label: "PostCardImageUrl", name: "postCardImageUrl", widget: 'string', required: false}
         - {label: "Draft", name: "draft", widget: "boolean", default: true}

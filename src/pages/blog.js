@@ -55,7 +55,7 @@ export const pageQuery = graphql`
             title
             author
             date
-            image
+            postCardImage
           }
         }
       }
