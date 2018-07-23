@@ -16,25 +16,29 @@ class Blog extends React.Component {
   //  const siteDescription = this.props.data.site.siteMetadata.description
 
     const [...posts] = this.props.data.allMarkdownRemark.edges;
-    return (
-      <div>
-        <Helmet>
-            <title>blog</title>
-            <meta name="description" content='blog' />
-        </Helmet>
-        <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <h1>Latest posts</h1>
-          </Grid>
 
-          {posts.map(post=>(
-            <Grid item xs={12} md={4} sm={6}>
-              <PostCard postdata={post} key={post.node.id}/>
-            </Grid>
-          ))}
-        </Grid>
-      </div>
-    )
+      if(posts.length < 1 || posts == undefined){
+        return null;
+      }else{
+        return(
+          <div>
+            <Helmet>
+                <title>blog</title>
+                <meta name="description" content='blog' />
+            </Helmet>
+            <Grid container spacing={24}>
+              <Grid item xs={12}>
+                <h1>Latest posts</h1>
+              </Grid>
+                  {posts.map(post=>(
+                    <Grid item xs={12} md={4} sm={6} key={post.node.id}>
+                      <PostCard postdata={post} />
+                    </Grid>
+                  ))}
+              </Grid>
+            </div>
+          )
+      }
   }
 }
 

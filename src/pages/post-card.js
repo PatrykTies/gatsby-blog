@@ -33,6 +33,14 @@ class PostCard extends React.Component {
     this.setState({ expanded: !this.state.expanded })
   };
   render(){
+
+    // const authorsEdges =
+    //   this.props.data.allAuthorsJson && this.props.data.allAuthorsJson.edges
+    //     ? this.props.data.allAuthorsJson.edges
+    //     : [];
+
+    const {title,author,date,image,path} = this.props.postdata ? this.props.postdata.node.frontmatter : {}
+
     return (
       <div>
         <Card className='card'>
@@ -47,16 +55,16 @@ class PostCard extends React.Component {
                 <MoreVertIcon />
               </IconButton>
             }
-            title={this.props.postdata.node.frontmatter.title}
-            subheader={`Posted by ${this.props.postdata.node.frontmatter.author} on ${this.props.postdata.node.frontmatter.date}`}
+            title={title}
+            subheader={`Posted by ${author} on ${date}`}
           />
           <CardMedia
 
-            image={this.props.postdata.node.frontmatter.image}
+            image={image}
             title="Contemplative Reptile"
             style={{height: '0px',backgroundSize: 'cover',
-            paddingTop: '36.25%', // 16:9,
-            marginTop:'0'}}
+            paddingTop: '56.25%', // 16:9,
+            marginTop:'0px'}}
           />
           <CardContent>
             <Typography component="p">
@@ -69,7 +77,7 @@ class PostCard extends React.Component {
               Share
             </Button>
             <Button size="small" variant="contained" color='primary'>
-              <Link to={this.props.postdata.node.frontmatter.path}>Read more</Link>
+              <Link to={path}>Read more</Link>
             </Button>
           </CardActions>
         </Card>
