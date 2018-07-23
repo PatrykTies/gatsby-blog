@@ -1,6 +1,9 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
+import PostCard from './post-card'
+
+import Grid from '@material-ui/core/Grid';
 
 class Blog extends React.Component {
 
@@ -19,22 +22,17 @@ class Blog extends React.Component {
             <title>blog</title>
             <meta name="description" content='blog' />
         </Helmet>
+        <Grid container spacing={24}>
+          <Grid item xs={12}>
+            <h1>Latest posts</h1>
+          </Grid>
 
-        <h1>Latest posts</h1>
-        {posts.map(post=>(
-        //{this.props.data.allMarkdownRemark.edges.map(post=>(
-          <div key={post.node.id}>
-            <h3>{post.node.frontmatter.title}</h3>
-            <small>Posted by {post.node.frontmatter.author} on {post.node.frontmatter.date}</small>
-            <br />
-            <br />
-            <Link to={post.node.frontmatter.path}>Read more...</Link>
-            <br />
-            <br />
-            <hr />
-          </div>
-        ))}
-
+          {posts.map(post=>(
+            <Grid item xs={12} md={4} sm={6}>
+              <PostCard postdata={post} key={post.node.id}/>
+            </Grid>
+          ))}
+        </Grid>
       </div>
     )
   }
@@ -53,9 +51,24 @@ export const pageQuery = graphql`
             title
             author
             date
+            image
           }
         }
       }
     }
   }
 `
+
+//
+// <div key={post.node.id}>
+//   <h3>{post.node.frontmatter.title}</h3>
+//   <small>Posted by {post.node.frontmatter.author} on {post.node.frontmatter.date}</small>
+//   <br />
+//   <br />
+//   <Button variant="contained" color="primary">
+//     <Link to={post.node.frontmatter.path}>Read more...</Link>
+//   </Button>
+//   <br />
+//   <br />
+//   <hr />
+// </div>

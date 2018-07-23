@@ -19,7 +19,11 @@
     "gatsby-source-filesystem": "^1.5.27",
     "gatsby-transformer-remark": "^1.7.37",
     "gatsby-transformer-sharp": "^1.6.22",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "react": "^16.4.1",
+    "react-dom": "latest",
+    "prop-types": "latest"
+
   },
   "homepage": "https://www.drop-your-shield.com",
   "keywords": [
