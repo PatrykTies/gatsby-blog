@@ -8,9 +8,10 @@ public_folder: "uploads"
 collections:
     - name: "coding"
       label: "Coding label"
-      folder: "src/posts/coding"
+      folder: "src/posts/{{slug}}"
       create: true
-      path: '/coding'
+      path: '/{{slug}}'
+      slug: {{slug}}/index.md
       fields:
         - {label: "Title", name: "title", widget: "string", required: true}
         - {label: "PostCardImage", name: "postCardImage", widget: image, required: false}
