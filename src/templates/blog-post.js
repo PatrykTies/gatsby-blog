@@ -25,28 +25,103 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+
 
 class BlogPostTemplate extends React.Component {
+  state = {
+    isOpenDrawer: false
+  }
+  toggleDrawer = (bool) =>{
+    this.setState({isOpenDrawer: bool})
+  }
+
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
+    const {next, prev, tags} = this.props.pathContext
+    
+
+    const sideList = (
+
+      <div className='list'>
+        <List component="nav">
+          <ListItem button component="a" href="/">
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem button component="a" href="/blog">
+            <ListItemText primary="Blog" />
+          </ListItem>
+        </List>
+        <Divider />
+        <List component="nav">
+            {tags.map(tagName =>{
+              return(
+                <ListItem key={`/tags/${tagName}`} button component="a" href={`/tags/${tagName}`}>
+                  <ListItemText primary={tagName} />
+                </ListItem>
+
+
+              )
+            })}
+          </List>
+      </div>
+    );
+
+
 
     return (
       <div className='root'>
+          <Drawer open={this.state.isOpenDrawer} onClose={(e) => this.toggleDrawer(false)}>
+            <div
+              tabIndex={0}
+              role="button"
+              onClick={(e) => this.toggleDrawer(false)}
+              onKeyDown={(e) => this.toggleDrawer(false)}
+            >
+              {sideList}
+            </div>
+          </Drawer>
 
           <AppBar position="fixed">
+
             <Toolbar>
-              <IconButton className='menuButton' color="inherit" aria-label="Menu">
+              <IconButton className='menuButton' color="inherit" aria-label="Menu" onClick={(e) => this.toggleDrawer(true)}>
                 <MenuIcon />
               </IconButton>
               <Typography variant="title" color="inherit" className='flex'>
-                News
+                <Link to='/'>
+                  HOME
+                </Link>
               </Typography>
-              <Button color="inherit">Login</Button>
+              <Typography variant="title" color="inherit" className='flex'>
+                <Link to='/blog'>
+                  BLOG INDEX
+                </Link>
+              </Typography>
+              {prev && (
+                <Button color="inherit">
+                  <Link to={prev.frontmatter.path}>
+                    Previous: {prev.frontmatter.title}
+                  </Link>
+                </Button>
+              )}
+              {next && (
+                <Button color="inherit" className='flex-right'>
+                  <Link to={next.frontmatter.path}>
+                    Next: {next.frontmatter.title}
+                  </Link>
+                </Button>
+              )}
             </Toolbar>
           </AppBar>
 
-        <Grid container spacing={4}>
+        <Grid container spacing={8}>
           <Grid item xs={12} sm={12}>
             <Card className='card'>
               <CardMedia
@@ -64,9 +139,9 @@ class BlogPostTemplate extends React.Component {
                 <Typography component="p">
                   {post.frontmatter.date}
                 </Typography>
-                <Typography component="p">
+
                   <div dangerouslySetInnerHTML={{ __html: post.html }} />
-                </Typography>
+
               </CardContent>
               <CardActions>
                 <Button size="small" variant="contained" color="secondary">
@@ -100,8 +175,9 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        path
         postCardImage
-
+        tags
       }
     }
   }
