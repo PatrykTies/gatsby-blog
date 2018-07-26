@@ -45,7 +45,7 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
     const {next, prev, tags} = this.props.pathContext
-    
+
 
     const sideList = (
 
@@ -94,16 +94,7 @@ class BlogPostTemplate extends React.Component {
               <IconButton className='menuButton' color="inherit" aria-label="Menu" onClick={(e) => this.toggleDrawer(true)}>
                 <MenuIcon />
               </IconButton>
-              <Typography variant="title" color="inherit" className='flex'>
-                <Link to='/'>
-                  HOME
-                </Link>
-              </Typography>
-              <Typography variant="title" color="inherit" className='flex'>
-                <Link to='/blog'>
-                  BLOG INDEX
-                </Link>
-              </Typography>
+
               {prev && (
                 <Button color="inherit">
                   <Link to={prev.frontmatter.path}>
@@ -112,7 +103,7 @@ class BlogPostTemplate extends React.Component {
                 </Button>
               )}
               {next && (
-                <Button color="inherit" className='flex-right'>
+                <Button color="inherit" >
                   <Link to={next.frontmatter.path}>
                     Next: {next.frontmatter.title}
                   </Link>
@@ -128,7 +119,7 @@ class BlogPostTemplate extends React.Component {
                 className='media'
                 image={post.frontmatter.postCardImage}
                 title="paste title from cms too"
-                style={{height: '0px',backgroundSize: 'contain',
+                style={{height: '0px',
                 paddingTop: '56.25%', // 16:9,
                 marginTop:'0px'}}
               />
@@ -172,6 +163,7 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       id
       html
+      htmlAst
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
