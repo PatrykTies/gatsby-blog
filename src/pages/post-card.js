@@ -39,7 +39,7 @@ class PostCard extends React.Component {
     //     ? this.props.data.allAuthorsJson.edges
     //     : [];
 
-    const {title,author,date,postCardImage,path} = this.props.postdata ? this.props.postdata.node.frontmatter : {}
+    const {frontmatter: {title,author,date,postCardImage}, fields: {slug} } = this.props.postdata ? this.props.postdata.node : {}
 
     return (
       <div>
@@ -77,7 +77,7 @@ class PostCard extends React.Component {
               Share
             </Button>
             <Button size="small" variant="contained" color='primary'>
-              <Link to={path}>Read more</Link>
+              <Link to={slug}>Read more</Link>
             </Button>
           </CardActions>
         </Card>

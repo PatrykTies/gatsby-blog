@@ -10,11 +10,11 @@ collections:
       label: "Coding label"
       folder: "src/posts/coding"
       create: true
-      slug: '{{slug}}/index.md'
+      slug: '{{slug}}'
       fields:
         - {label: "Title", name: "title", widget: "string", required: true}
         - {label: "Content Type", name: "contentType", widget: "hidden", default: "coding"}
-        - {label: "Path", name: "path", widget: "hidden", default: "/coding"}
+        - {label: "Path", name: "path", widget: "hidden", default: "{{slug}}"}
         - {label: "PostCardImage", name: "postCardImage", widget: image, required: false}
         - {label: "PostCardImageUrl", name: "postCardImageUrl", widget: 'string', required: false}
         - {label: "Publish Date", name: "date", widget: "date"}

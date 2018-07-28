@@ -44,7 +44,7 @@ class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
-    const {next, prev, tags} = this.props.pathContext
+    const {next, prev, tags, slug} = this.props.pathContext
 
 
     const sideList = (
@@ -97,14 +97,14 @@ class BlogPostTemplate extends React.Component {
 
               {prev && (
                 <Button color="inherit">
-                  <Link to={prev.frontmatter.path}>
+                  <Link to={prev.fields.slug}>
                     Previous: {prev.frontmatter.title}
                   </Link>
                 </Button>
               )}
               {next && (
                 <Button color="inherit" >
-                  <Link to={next.frontmatter.path}>
+                  <Link to={next.fields.slug}>
                     Next: {next.frontmatter.title}
                   </Link>
                 </Button>
@@ -159,14 +159,14 @@ class BlogPostTemplate extends React.Component {
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostByPath($path: String!) {
+  query BlogPostByPath($slug: String!) {
     site {
       siteMetadata {
         title
         author
       }
     }
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       html
       htmlAst

@@ -4,6 +4,24 @@ const path = require("path")
 const select = require(`unist-util-select`)
 const fs = require(`fs-extra`)
 
+const { createFilePath } = require(`gatsby-source-filesystem`);
+
+exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
+  const { createNodeField } = boundActionCreators
+  if (node.internal.type === `MarkdownRemark`) {
+    const slug = createFilePath({ node, getNode, basePath: `pages` })
+    createNodeField({
+      node,
+      name: `slug`,
+      value: slug,
+    })
+  }
+};
+
+
+
+
+
 
 const all_tags = (posts) =>{
   const _postsByTags = {}
@@ -84,6 +102,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         allMarkdownRemark(limit: 1000) {
           edges {
             node {
+              fields {
+                slug
+              }
               frontmatter {
                 title
                 path
@@ -102,6 +123,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           reject(result.errors)
 
         }
+
         const posts = result.data.allMarkdownRemark.edges;
         const tags = all_tags(posts);
         createTagPages(createPage, posts);
@@ -110,14 +132,16 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         // Create blog posts pages.
         _.each(posts, (edge, index) => {
           createPage({
-            path: edge.node.frontmatter.path,
+            path: edge.node.fields.slug,
             component: blogPost,
             context: {
               prev: index === 0 ? null : posts[index -1].node,
               next: index === (posts.length - 1) ? null : posts[index + 1].node,
-              tags: tags
+              tags: tags,
+              slug: edge.node.fields.slug
             }
           })
+          resolve()
         })
       })
     )
