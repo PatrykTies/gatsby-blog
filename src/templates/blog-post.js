@@ -130,9 +130,7 @@ class BlogPostTemplate extends React.Component {
                 <Typography component="p">
                   {post.frontmatter.date}
                 </Typography>
-                <Typography component="p" component="h2">
-                  {post.htmlAst.children[0].children[0].value}
-                </Typography>
+
                 <Typography dangerouslySetInnerHTML={{ __html: post.html }}>
 
                 </Typography>
