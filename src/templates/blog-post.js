@@ -44,7 +44,7 @@ class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
-    const {next, prev, tags, slug} = this.props.pathContext
+    const {next, prev, tags, slug, categories} = this.props.pathContext
 
 
     const sideList = (
@@ -60,10 +60,10 @@ class BlogPostTemplate extends React.Component {
         </List>
         <Divider />
         <List component="nav">
-            {tags.map(tagName =>{
+            {categories.map(categoryName =>{
               return(
-                <ListItem key={`/tags/${tagName}`} button component="a" href={`/tags/${tagName}`}>
-                  <ListItemText primary={tagName} />
+                <ListItem key={`/categories/${categoryName}`} button component="a" href={`/categories/${categoryName}`}>
+                  <ListItemText primary={categoryName} />
                 </ListItem>
 
 
@@ -176,6 +176,7 @@ export const pageQuery = graphql`
         path
         postCardImage
         tags
+        category
       }
     }
   }

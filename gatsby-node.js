@@ -19,8 +19,65 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 };
 
 
+const all_categories = (posts) =>{
+  const _postsByCategory = {}
+
+  posts.forEach(({node}) => {
+    const category = node.frontmatter.category
+    if(category){
+        if(!_postsByCategory[category]){
+          _postsByCategory[category] = []
+        }
+        _postsByCategory[category].push(node)
+      }
+  })
 
 
+  return Object.keys(_postsByCategory)
+}
+const createCategoryPages = (createPage, posts) => {
+
+
+  const categoryPageTemplate = path.resolve("./src/templates/categories.js")
+  const allCategoriesTemplate = path.resolve("./src/templates/all-categories.js")
+
+  const postsByCategories = {}
+
+  posts.forEach(({node}) => {
+    const category = node.frontmatter.category
+    if(category){
+      if(!postsByCategories[category]){
+        postsByCategories[category] = []
+      }
+        postsByCategories[category].push(node)
+      }
+  })
+
+  const categories = Object.keys(postsByCategories)
+
+  createPage({
+    path: '/categories',
+    component: allCategoriesTemplate,
+    context:{
+      categories: categories.sort()
+    }
+  })
+
+  categories.forEach(categoryName=>{
+    const posts = postsByCategories[categoryName]
+
+    createPage({
+      path: `/categories/${categoryName}`,
+      component: categoryPageTemplate,
+      context:{
+        posts,
+        categoryName
+      }
+    })
+  })
+
+
+}
 
 
 const all_tags = (posts) =>{
@@ -107,9 +164,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               }
               frontmatter {
                 title
-                path
-                contentType
-                tags
+                category
               }
             }
           }
@@ -126,7 +181,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
         const posts = result.data.allMarkdownRemark.edges;
         const tags = all_tags(posts);
+        const categories = all_categories(posts);
         createTagPages(createPage, posts);
+        createCategoryPages(createPage, posts);
 
 
         // Create blog posts pages.
@@ -138,7 +195,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               prev: index === 0 ? null : posts[index -1].node,
               next: index === (posts.length - 1) ? null : posts[index + 1].node,
               tags: tags,
-              slug: edge.node.fields.slug
+              slug: edge.node.fields.slug,
+              categories: categories
             }
           })
           resolve()
