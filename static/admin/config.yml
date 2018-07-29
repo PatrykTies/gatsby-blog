@@ -6,24 +6,20 @@ media_folder: "static/uploads"
 public_folder: "uploads"
 
 collections:
-    - name: "coding"
-      label: "Coding label"
-      folder: "src/posts/coding"
+    - name: "drop-blog"
+      label: "DropBlog"
+      folder: "src/posts/drop-blog"
       create: true
-      slug: '{{slug}}'
+      slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
       fields:
         - {label: "Title", name: "title", widget: "string", required: true}
-        - {label: "Content Type", name: "contentType", widget: "hidden", default: "coding"}
-        - {label: "Path", name: "path", widget: "hidden", default: "{{slug}}"}
+        - {label: "Content Type", name: "contentType", widget: "hidden", default: "blog_post"}
         - {label: "PostCardImage", name: "postCardImage", widget: image, required: false}
-        - {label: "PostCardImageUrl", name: "postCardImageUrl", widget: 'string', required: false}
         - {label: "Publish Date", name: "date", widget: "date"}
-        - {label: "Draft", name: "draft", widget: "boolean", default: true}
-        - {label: "Categories", name: "categories", widget: "hidden", default: "Podcast"}
+        - {label: "Align Content", name: "align", widget: "select", options: ["Espionage", "Tips&Tricks, "Ideas", "Ship Builds", "Station Builds","About Us", "Galaxy War", "Galaxy Fun"], required: true}
         - {label: "Tags", name: "tags", widget: "list", required: false}
         - {label: Author, name: author, widget: hidden, default: Chris Stayte}
-        - {label: Author Image, name: authorImage, widget: hidden, default: "uploads/admirals.jpg"}
-        - {label: "Header Image", name: image, widget: image, required: false}
+        - {label: Author Image, name: authorImage, widget: image, default: "uploads/drop-logo1.png", required: false}
         - {label: Commenting, name: comments, widget: boolean, default: true}
         - {label: Sharing, name: share, widget: boolean, default: true}
         - {label: Type, name: type, widget: hidden, default: "post"}
