@@ -39,7 +39,8 @@ class PostCard extends React.Component {
     //     ? this.props.data.allAuthorsJson.edges
     //     : [];
 
-    const {frontmatter: {title,author,date,postCardImage}, fields: {slug} } = this.props.postdata ? this.props.postdata.node : {}
+    const {title,author,date,postCardImage} = this.props.postdata ? this.props.postdata.node.frontmatter : {}
+    const {slug} = this.props.postdata ? this.props.postdata.node.fields : {}
 
     return (
       <div>
