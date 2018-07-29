@@ -166,6 +166,7 @@ export const pageQuery = graphql`
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
+      html
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

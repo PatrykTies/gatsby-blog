@@ -16,7 +16,7 @@ collections:
         - {label: "Content Type", name: "contentType", widget: "hidden", default: "blog_post"}
         - {label: "2. Add posts main,big image", name: "postCardImage", widget: image, required: false}
         - {label: "3. Date you publising", name: "date", widget: "date"}
-        - label: "4. You must select one category"
+        - label: "4. You must select one topic category"
           name: "category"
           widget: "select"
           options: ["Ideas", "Galaxy Fun", "About Me", "Espionage", "Tips&Tricks", "Ship Designs", "Station Design", "Galaxy War", "Special Event"]
@@ -24,4 +24,3 @@ collections:
         - {label: Author Image, name: authorImage, widget: image, default: "uploads/drop-logo1.png", required: false}
         - {label: Type, name: type, widget: hidden, default: "post"}
         - {label: "6. Now write your post, to add images tap on '+' button below", name: "body", widget: "markdown"}
-    
