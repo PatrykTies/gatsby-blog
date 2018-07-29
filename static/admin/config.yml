@@ -16,8 +16,8 @@ collections:
         - {label: "Content Type", name: "contentType", widget: "hidden", default: "blog_post"}
         - {label: "PostCardImage", name: "postCardImage", widget: image, required: false}
         - {label: "Publish Date", name: "date", widget: "date"}
-        - {label: "Align Content", name: "align", widget: "select", options: ["Espionage", "Tips&Tricks, "Ideas", "Ship Builds", "Station Builds","About Us", "Galaxy War", "Galaxy Fun"], required: true}
-        - {label: "Tags", name: "tags", widget: "list", required: false}
+        - {label: "Tags Selector", name: "tags", widget: "select", options: ["Espionage", "Tips&Tricks, "Ideas", "Ship-Builds", "Station-Builds","About-Us", "Galaxy-War", "Galaxy-Fun"], required: true}
+        - {label: "Tag", name: "tag", widget: "list", required: false}
         - {label: Author, name: author, widget: hidden, default: Chris Stayte}
         - {label: Author Image, name: authorImage, widget: image, default: "uploads/drop-logo1.png", required: false}
         - {label: Commenting, name: comments, widget: boolean, default: true}
