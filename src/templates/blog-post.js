@@ -168,13 +168,10 @@ export const pageQuery = graphql`
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
-      html
-      htmlAst
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
         postCardImage
-        tags
         category
       }
     }
