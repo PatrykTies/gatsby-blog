@@ -41,6 +41,7 @@ class PostCard extends React.Component {
 
     const {title,author,date,postCardImage} = this.props.postdata ? this.props.postdata.node.frontmatter : {}
     const {slug} = this.props.postdata ? this.props.postdata.node.fields : {}
+    const excerpt = this.props.postdata ? this.props.postdata.node.excerpt : 'Nothing has been written'
 
     return (
       <div>
@@ -69,7 +70,7 @@ class PostCard extends React.Component {
           />
           <CardContent>
             <Typography component="p">
-              {this.props.postdata.node.excerpt}
+              {excerpt}
             </Typography>
           </CardContent>
           <CardActions>

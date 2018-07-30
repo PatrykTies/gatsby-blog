@@ -50,7 +50,7 @@ export const pageQuery = graphql`
       edges{
         node{
           id
-          excerpt(pruneLength: 250)
+          excerpt
           frontmatter{
             title
             author
