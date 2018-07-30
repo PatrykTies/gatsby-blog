@@ -161,7 +161,9 @@ class BlogPostTemplate extends React.Component {
                   Comment
                 </Button>
               </CardActions>
-              <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+              <div className='comments-wrapper'>
+                <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+              </div>
             </Card>
           </Grid>
         </Grid>
