@@ -2,7 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
 import get from 'lodash/get'
-
+import Disqus from 'disqus-react';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
@@ -45,6 +45,12 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
     const {next, prev, tags, slug, categories} = this.props.pathContext
+
+    const disqusShortname = 'drop-1';
+    const disqusConfig = {
+        identifier: post.id,
+        title: post.frontmatter.title,
+    };
 
 
     const sideList = (
@@ -146,6 +152,7 @@ class BlogPostTemplate extends React.Component {
                   Comment
                 </Button>
               </CardActions>
+              <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
             </Card>
           </Grid>
         </Grid>

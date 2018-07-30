@@ -6,6 +6,7 @@
   "dependencies": {
     "@material-ui/core": "^1.4.0",
     "@material-ui/icons": "^1.1.0",
+    "disqus-react": "^1.0.5",
     "gatsby": "^1.9.235",
     "gatsby-image": "^1.0.42",
     "gatsby-link": "^1.6.39",
@@ -20,10 +21,9 @@
     "gatsby-transformer-remark": "^1.7.37",
     "gatsby-transformer-sharp": "^1.6.22",
     "lodash": "^4.17.4",
+    "prop-types": "latest",
     "react": "^16.4.1",
-    "react-dom": "latest",
-    "prop-types": "latest"
-
+    "react-dom": "latest"
   },
   "homepage": "https://www.drop-your-shield.com",
   "keywords": [
