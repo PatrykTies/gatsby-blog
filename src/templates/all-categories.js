@@ -10,7 +10,7 @@ const AllCategories = ({pathContext}) => {
           {categories.map(category=>{
             return(
               <li>
-                <Link to={'/categories/${category}'}>
+                <Link key={category} to={'/categories/${category}'}>
                   {category}
                 </Link>
               </li>
