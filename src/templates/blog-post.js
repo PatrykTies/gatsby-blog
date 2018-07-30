@@ -32,6 +32,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import {WhatsappShareButton, WhatsappIcon} from 'react-share';
+
 
 class BlogPostTemplate extends React.Component {
   state = {
@@ -146,8 +148,15 @@ class BlogPostTemplate extends React.Component {
               </CardContent>
               <CardActions>
                 <Button size="small" variant="contained" color="secondary">
-                  Share
+                  <WhatsappShareButton
+                    url={`https://drop-your-shield.com${slug}`}
+                    title={post.frontmatter.title}
+                    separator=":: "
+                    className="">
+                    <WhatsappIcon size={32} round />
+                  </WhatsappShareButton>
                 </Button>
+
                 <Button size="small" variant="contained" color="primary">
                   Comment
                 </Button>
