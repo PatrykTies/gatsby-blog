@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
-import Helmet from 'react-helmet'
 
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
@@ -19,36 +20,39 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-import ray7 from '../images/armory/ray7.png'
 
-class PostCard extends React.Component {
-  constructor(props){
-   super(props);
-   this.state = { expanded: false};
- }
+const styles = {
+  card: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    marginBottom: 16,
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+};
+
+const PostCard = ({classes, title,author,date,postCardImage,slug,excerpt}) => {
 
 
-
-  handleExpandClick = () => {
-    this.setState({ expanded: !this.state.expanded })
-  };
-  render(){
-
-    // const authorsEdges =
-    //   this.props.data.allAuthorsJson && this.props.data.allAuthorsJson.edges
-    //     ? this.props.data.allAuthorsJson.edges
-    //     : [];
-
-    const {title,author,date,postCardImage} = this.props.postdata ? this.props.postdata.node.frontmatter : {}
-    const {slug} = this.props.postdata ? this.props.postdata.node.fields : {}
-    const excerpt = this.props.postdata ? this.props.postdata.node.excerpt : 'Nothing has been written'
+    // const { classes } = props;
+    // const {title,author,date,postCardImage} = props.postdata ? props.postdata.node.frontmatter : {}
+    // const {slug} = props.postdata ? props.postdata.node.fields : {}
+    // const excerpt = props.postdata ? props.postdata.node.excerpt : 'Nothing has been written'
 
     return (
-      <div>
-        <Card className='card'>
+
+        <Card className={classes.card}>
           <CardHeader
             avatar={
-              <Avatar aria-label="Recipe" className='avatar'>
+              <Avatar aria-label="Recipe" >
                 R
               </Avatar>
             }
@@ -69,22 +73,19 @@ class PostCard extends React.Component {
             marginTop:'0px'}}
           />
           <CardContent>
-            <Typography component="p">
+            <Typography component="p" className={classes.pos}>
               {excerpt}
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small" variant="contained" color='secondary'>
-              Share
-            </Button>
             <Button size="small" variant="contained" color='primary'>
               <Link to={slug}>Read more</Link>
             </Button>
           </CardActions>
         </Card>
-      </div>
+
     );
-  }
+
 }
 
-export default PostCard;
+export default withStyles(styles)(PostCard);

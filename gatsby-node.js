@@ -35,6 +35,17 @@ const all_categories = (posts) =>{
 
   return Object.keys(_postsByCategory)
 }
+const createAllPostsPage = (createPage, categories) => {
+  const AllPostsPage = path.resolve("./src/templates/blogs.js")
+
+  createPage({
+    path: '/blogs',
+    component: AllPostsPage,
+    context:{
+      categories: categories
+    }
+  })
+}
 const createCategoryPages = (createPage, posts) => {
 
 
@@ -71,7 +82,8 @@ const createCategoryPages = (createPage, posts) => {
       component: categoryPageTemplate,
       context:{
         posts,
-        categoryName
+        categoryName,
+        categories: categories
       }
     })
   })
@@ -159,11 +171,16 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         allMarkdownRemark(limit: 1000) {
           edges {
             node {
+              id
+              excerpt
+              html
               fields {
                 slug
               }
               frontmatter {
                 title
+                date(formatString: "MMMM DD, YYYY")
+                postCardImage
                 category
               }
             }
@@ -184,7 +201,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         const categories = all_categories(posts);
         createTagPages(createPage, posts);
         createCategoryPages(createPage, posts);
-
+        createAllPostsPage(createPage, categories);
 
         // Create blog posts pages.
         _.each(posts, (edge, index) => {
@@ -194,7 +211,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             context: {
               prev: index === 0 ? null : posts[index -1].node,
               next: index === (posts.length - 1) ? null : posts[index + 1].node,
-              tags: tags,
               slug: edge.node.fields.slug,
               categories: categories
             }
