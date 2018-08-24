@@ -16,6 +16,4 @@ First , Personal rewards:  IF YOU KILL STATIONS,DEFENCES AND FLEETS IN PVP you g
 
 ![points](/uploads/20180805_111637.jpg)
 
- 
-
 ![points two](/uploads/20180805_111647.jpg)
